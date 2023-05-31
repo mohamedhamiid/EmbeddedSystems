@@ -2,9 +2,11 @@
 *For Video, Please keep your eye on the mouse to see what I click*
 
 ## Description
-- It has 2 modes : Clock + Stopwatch (I call it Timer in the simulation)
-- Clock Mode : You can set time hours , minutes and seconds.
-- Timer (Stopwatch) Mode : Every 1 second it increases.
+### It has 2 modes : Clock + Stopwatch (I call it Timer in the simulation)
+### - Clock Mode : 
+You can set time hours , minutes and seconds.
+### - Timer (Stopwatch) Mode : 
+Every 1 second it increases.
 - You can switch from mode to other using keys mentioned in LCD.
 - Also , You can reset Timer (Stopwatch).
 
