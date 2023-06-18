@@ -1,0 +1,1 @@
+SRC/MCAL/DIO/DIO_cfg.o SRC/MCAL/DIO/DIO_cfg.o: ../SRC/MCAL/DIO/DIO_cfg.c
