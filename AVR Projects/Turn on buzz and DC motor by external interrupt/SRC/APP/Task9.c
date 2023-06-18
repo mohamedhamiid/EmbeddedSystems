@@ -1,22 +1,11 @@
 #include "util/delay.h"
 #include "../../INCLUDE/MCAL/DIO/DIO.h"
-#include "../../INCLUDE/MCAL/ADC/ADC.h"
-#include "../../INCLUDE/MCAL/TIMER/TIMER.h"
-#include "../../INCLUDE/MCAL/UART/UART.h"
-#include "../../INCLUDE/MCAL/ADC/ADC_priv.h"
-#include "../../INCLUDE/MCAL/UART/UART_priv.h"
-#include "../../INCLUDE/MCAL/TIMER/TIMER_priv.h"
-#include "../../INCLUDE/MCAL/ADC/ADC_cfg.h"
 #include "../../INCLUDE/MCAL/DIO/DIO_priv.h"
 #include "../../SERVICES/bit_utilies.h"
 #include "../../INCLUDE/HAL/Led/Led.h"
-#include "../../INCLUDE/HAL/seg_7/seg_7.h"
 #include "../../INCLUDE/HAL/Button/Button.h"
-#include "../../INCLUDE/HAL/Lcd/Lcd.h"
-#include "../../INCLUDE/HAL/Keypad/Keypad.h"
 #include "../../INCLUDE/MCAL/EXTINT/EXTINT.h"
 #include "../../INCLUDE/MCAL/GIE/GIE.h"
-#include "../../INCLUDE/HAL/STEPPER/STEPPER.h"
 /*************************************Task 9*******************************/
 /* - Connect 2 ExtInt to 2 switches , Each switch Turn on (DC Motor,Buzz) */
 /* - The interrupt happened during main program is executed               */
