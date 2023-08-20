@@ -15,7 +15,6 @@ u8 	 MNVIC_u8GetActiveFlag       (u8 Copy_u8IntNo);
 
 
 void MNVIC_voidSetPriority		 (s8 Copy_s8IntNo ,
-								  u32 Copy_u32GroupSubBits ,
 								  u8 Copy_u8GroupPriority ,
 								  u8 Copy_u8SubPriority);
 
