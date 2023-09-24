@@ -18,8 +18,10 @@ void RCC_voidSetAdcPrescale(u8 Copy_u8Prescale);
 #define RCC_APB2                          2
 
 /* PERIPHIRALS BITS */
+#define RCC_DMA1                          0
 #define RCC_GPIO_A                        2
 #define RCC_GPIO_B                        3
 #define RCC_GPIO_C                        4
+#define RCC_UART1                         14
 
 #endif

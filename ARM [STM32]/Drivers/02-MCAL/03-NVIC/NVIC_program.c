@@ -12,8 +12,8 @@
 
 
 void MNVIC_voidInit(){
-#define SCB_AIRCR		 *((volatile u32*)0xE000ED0C)
-	SCB_AIRCR = MNVIC_PRIORITY_BINARY_POINT ;
+#define SCB_AIRCR *((volatile u32*)0xE000ED0C)
+	SCB_AIRCR =  MNVIC_PRIORITY_BINARY_POINT ;
 }
 
 void MNVIC_voidEnableInterrupt(u8 Copy_u8IntNo){
@@ -70,19 +70,26 @@ void MNVIC_voidClearPendingFlag(u8 Copy_u8IntNo){
 }
 
 u8 MNVIC_u8GetActiveFlag(u8 Copy_u8IntNo){
+	u8 Loc_u8Temp=0;
 	if(Copy_u8IntNo<=31){
-		return GET_BIT(NVIC_IABR0 , Copy_u8IntNo);
+		Loc_u8Temp = GET_BIT(NVIC_IABR0 , Copy_u8IntNo);
 	}
 	else if(Copy_u8IntNo<=59){
-		return GET_BIT(NVIC_IABR1 , (Copy_u8IntNo-32));
+		Loc_u8Temp = GET_BIT(NVIC_IABR1 , (Copy_u8IntNo-32));
 	}
 	else{
 		/* Error : Invalid Interrupt No */
 	}
+	return Loc_u8Temp ;
 }
 
-void MNVIC_voidSetPriority(s8 Copy_s8IntNo , u8 Copy_u8GroupPriority , u8 Copy_u8SubPriority){
-	u8 Loc_u8BinaryPoint = Copy_u8SubPriority | (Copy_u8GroupPriority<<((MNVIC_PRIORITY_BINARY_POINT-NVIC_GROUP_4_SUB_0)/0x100));
+void MNVIC_voidSetPriority(s8 Copy_s8IntNo ,
+						   u8 Copy_u8GroupPriority ,
+						   u8 Copy_u8SubPriority){
+
+	u8 Loc_u8BinaryPoint = Copy_u8SubPriority |
+						   (Copy_u8GroupPriority<<
+						   ((MNVIC_PRIORITY_BINARY_POINT - NVIC_GROUP_4_SUB_0)/0x100));
 
 	if(Copy_s8IntNo < 0){
 		/* Core Peripheral */

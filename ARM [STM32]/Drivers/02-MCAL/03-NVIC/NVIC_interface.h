@@ -7,6 +7,9 @@
 #define NVIC_INTERFACE_H
 
 /* Prototypes */
+
+void MNVIC_voidInit();
+
 void MNVIC_voidEnableInterrupt   (u8 Copy_u8IntNo);
 void MNVIC_voidDisableInterrupt  (u8 Copy_u8IntNo);
 void MNVIC_voidSetPendingFlag	 (u8 Copy_u8IntNo);
@@ -27,6 +30,13 @@ void MNVIC_voidSetPendingFlagS(u32 Copy_u8Val);
 #define NVIC_EXT2                     8
 #define NVIC_EXT3                     9
 #define NVIC_EXT4                     10
+#define NVIC_DMA_CHANNEL_1            11
+#define NVIC_DMA_CHANNEL_2            12
+#define NVIC_DMA_CHANNEL_3            13
+#define NVIC_DMA_CHANNEL_4            14
+#define NVIC_DMA_CHANNEL_5            15
+#define NVIC_DMA_CHANNEL_6            16
+#define NVIC_DMA_CHANNEL_7            17
 #define NVIC_EXT5_EXT9                23
 #define NVIC_EXT10_EXT15              40
 

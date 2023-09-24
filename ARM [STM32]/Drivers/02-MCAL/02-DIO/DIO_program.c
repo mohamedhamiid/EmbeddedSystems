@@ -11,81 +11,84 @@
 #include "DIO_config.h"
 
 
-void DIO_voidSetPinDirection(u8 Copy_u8PortId ,u8 Copy_u8PinNo ,u8 Copy_u8Direction , u8 Copy_u8Mode){
+void MDIO_voidSetPinDirection(MDIO_enumPorts Copy_enumPortId ,
+							 MDIO_enumPins Copy_enumPinNo ,
+							 u8 Copy_u8Direction ,
+							 u8 Copy_u8Mode){
 
 	pu32 Loc_pu32CurrentCrReg=0;
 
 	/* CHOOSE PIN AND PORT */
-	switch(Copy_u8PortId){
+	switch(Copy_enumPortId){
 
-		case DIO_PORTA:
-			if(Copy_u8PinNo <= DIO_PIN7){
+		case PORTA:
+			if(Copy_enumPinNo <= PIN7){
 
 				Loc_pu32CurrentCrReg = GPIOA_CRL ;
 
-				if(Copy_u8Direction == 0 && Copy_u8Mode==DIO_INPUT_PULL_UP)
-					GPIOA_BSRR  = (1<<(Copy_u8PinNo)) ;
-				else if(Copy_u8Direction == 0 && Copy_u8Mode==DIO_INPUT_PULL_DOWN)
-					GPIOA_BRR   = (1<<(Copy_u8PinNo))  ;
+				if(Copy_u8Direction == 0 && Copy_u8Mode==MDIO_MODE_INPUT_PULL_UP)
+					GPIOA_BSRR  = (1<<(Copy_enumPinNo)) ;
+				else if(Copy_u8Direction == 0 && Copy_u8Mode==MDIO_MODE_INPUT_PULL_DOWN)
+					GPIOA_BRR   = (1<<(Copy_enumPinNo))  ;
 
-				Copy_u8PinNo = (Copy_u8PinNo)  * 4 ;
+				Copy_enumPinNo = (Copy_enumPinNo)  * 4 ;
 			}
-			else if(Copy_u8PinNo <= DIO_PIN15){
+			else if(Copy_enumPinNo <= PIN15){
 
 				Loc_pu32CurrentCrReg = GPIOA_CRH ;
 
-				if(Copy_u8Direction == 0 && Copy_u8Mode==DIO_INPUT_PULL_UP)
-					GPIOA_BSRR  = (1<<(Copy_u8PinNo)) ;
-				else if(Copy_u8Direction == 0 && Copy_u8Mode==DIO_INPUT_PULL_DOWN)
-					GPIOA_BRR  = (1<<(Copy_u8PinNo))  ;
+				if(Copy_u8Direction == 0 && Copy_u8Mode==MDIO_MODE_INPUT_PULL_UP)
+					GPIOA_BSRR  = (1<<(Copy_enumPinNo)) ;
+				else if(Copy_u8Direction == 0 && Copy_u8Mode==MDIO_MODE_INPUT_PULL_DOWN)
+					GPIOA_BRR  = (1<<(Copy_enumPinNo))  ;
 
-				Copy_u8PinNo = (Copy_u8PinNo-8) * 4 ;
+				Copy_enumPinNo = (Copy_enumPinNo-8) * 4 ;
 			}
 			else{
 				/* Error : Invalid Pin No */
 			}
 		break;
 
-		case DIO_PORTB:
-			if(Copy_u8PinNo <= DIO_PIN7){
+		case PORTB:
+			if(Copy_enumPinNo <= PIN7){
 
 				Loc_pu32CurrentCrReg = GPIOB_CRL ;
 
-				if(Copy_u8Mode==DIO_INPUT_PULL_UP)
-					GPIOB_BSRR  = (1<<(Copy_u8PinNo)) ;
-				else if(Copy_u8Mode==DIO_INPUT_PULL_DOWN)
-					GPIOB_BRR   = (1<<(Copy_u8PinNo))  ;
+				if(Copy_u8Mode==MDIO_MODE_INPUT_PULL_UP)
+					GPIOB_BSRR  = (1<<(Copy_enumPinNo)) ;
+				else if(Copy_u8Mode==MDIO_MODE_INPUT_PULL_DOWN)
+					GPIOB_BRR   = (1<<(Copy_enumPinNo))  ;
 
-				Copy_u8PinNo = (Copy_u8PinNo)     * 4 ;
+				Copy_enumPinNo = (Copy_enumPinNo)     * 4 ;
 			}
-			else if(Copy_u8PinNo <= DIO_PIN15){
+			else if(Copy_enumPinNo <= PIN15){
 
 				Loc_pu32CurrentCrReg = GPIOB_CRH ;
 
-				if(Copy_u8Mode==DIO_INPUT_PULL_UP)
-					GPIOB_BSRR  = (1<<(Copy_u8PinNo)) ;
-				else if(Copy_u8Mode==DIO_INPUT_PULL_DOWN)
-					GPIOB_BRR  = (1<<(Copy_u8PinNo))  ;
+				if(Copy_u8Mode==MDIO_MODE_INPUT_PULL_UP)
+					GPIOB_BSRR  = (1<<(Copy_enumPinNo)) ;
+				else if(Copy_u8Mode==MDIO_MODE_INPUT_PULL_DOWN)
+					GPIOB_BRR  = (1<<(Copy_enumPinNo))  ;
 
-				Copy_u8PinNo = (Copy_u8PinNo-8)   * 4 ;
+				Copy_enumPinNo = (Copy_enumPinNo-8)   * 4 ;
 			}
 			else{
 				/* Error : Invalid Pin No */
 			}
 		break;
 
-		case DIO_PORTC:
+		case PORTC:
 
-			if(Copy_u8PinNo <= DIO_PIN15 && Copy_u8PinNo>=DIO_PIN13){
+			if(Copy_enumPinNo <= PIN15 && Copy_enumPinNo>=PIN13){
 
 				Loc_pu32CurrentCrReg = GPIOC_CRH ;
 
-				if(Copy_u8Mode==DIO_INPUT_PULL_UP)
-					GPIOC_BSRR  = (1<<(Copy_u8PinNo)) ;
-				else if(Copy_u8Mode==DIO_INPUT_PULL_DOWN)
-					GPIOC_BRR  = (1<<(Copy_u8PinNo))  ;
+				if(Copy_u8Mode==MDIO_MODE_INPUT_PULL_UP)
+					GPIOC_BSRR  = (1<<(Copy_enumPinNo)) ;
+				else if(Copy_u8Mode==MDIO_MODE_INPUT_PULL_DOWN)
+					GPIOC_BRR  = (1<<(Copy_enumPinNo))  ;
 
-				Copy_u8PinNo = (Copy_u8PinNo-8)   * 4 ;
+				Copy_enumPinNo = (Copy_enumPinNo-8)   * 4 ;
 			}
 			else{
 				/* Error : Invalid Pin No */
@@ -98,12 +101,12 @@ void DIO_voidSetPinDirection(u8 Copy_u8PortId ,u8 Copy_u8PinNo ,u8 Copy_u8Direct
 	/* END OF CHOOSE PIN AND PORT */
 	/******************************/
 
-	*Loc_pu32CurrentCrReg &= ~(0xF<<Copy_u8PinNo); /* Reset Pin bits in the register */
+	*Loc_pu32CurrentCrReg &= ~(0xF<<Copy_enumPinNo); /* Reset Pin bits in the register */
 
 
 	/* CHOOSE DIRECTION */
-	if(Copy_u8Direction<=DIO_OUTPUT_50MHZ){
-		*Loc_pu32CurrentCrReg |= Copy_u8Direction << (Copy_u8PinNo) ;
+	if(Copy_u8Direction<=MDIO_DIRECTION_OUTPUT_50MHZ){
+		*Loc_pu32CurrentCrReg |= Copy_u8Direction << (Copy_enumPinNo) ;
 	}
 	/* END OF CHOOSE DIRECTION */
 	/***************************/
@@ -111,45 +114,45 @@ void DIO_voidSetPinDirection(u8 Copy_u8PortId ,u8 Copy_u8PinNo ,u8 Copy_u8Direct
 
 	/* Choose Mode */
 	/* Output Modes :First condition check that it's output */
-	if((Copy_u8Direction > 0) && (Copy_u8Mode <= DIO_OUTPUT_ALTER_FUNC_OPEN_DRAIN)){
-		*Loc_pu32CurrentCrReg |= Copy_u8Mode << (Copy_u8PinNo + 2);
+	if((Copy_u8Direction > 0) && (Copy_u8Mode <= MDIO_MODE_OUTPUT_ALTER_FUNC_OPEN_DRAIN)){
+		*Loc_pu32CurrentCrReg |= Copy_u8Mode << (Copy_enumPinNo + 2);
 	}
 	/* Input  Modes :First condition check that it's iutput */
-	else if((Copy_u8Direction == 0) && (Copy_u8Mode <= DIO_INPUT_PULL_DOWN)){
-		*Loc_pu32CurrentCrReg |= Copy_u8Mode << (Copy_u8PinNo + 2);
+	else if((Copy_u8Direction == 0) && (Copy_u8Mode <= MDIO_MODE_INPUT_PULL_DOWN)){
+		*Loc_pu32CurrentCrReg |= Copy_u8Mode << (Copy_enumPinNo + 2);
 	}
 
 } 
-void DIO_voidSetPinValue(u8 Copy_u8PortId ,u8 Copy_u8PinNo , u8 Copy_u8PinVal){
+void MDIO_voidSetPinValue(MDIO_enumPorts Copy_enumPortId ,MDIO_enumPins Copy_enumPinNo , u8 Copy_u8PinVal){
 
-	switch(Copy_u8PortId){
+	switch(Copy_enumPortId){
 
-		case DIO_PORTA:
-			if(Copy_u8PinNo<=DIO_PIN15){
+		case PORTA:
+			if(Copy_enumPinNo<=PIN15){
 
 				switch(Copy_u8PinVal){
-					case DIO_PIN_LOW : GPIOA_BRR  = (1<<Copy_u8PinNo) ;break;
-					case DIO_PIN_HIGH: GPIOA_BSRR = (1<<Copy_u8PinNo) ;break;
+					case MDIO_PIN_LOW : GPIOA_BRR  = (1<<Copy_enumPinNo) ;break;
+					case MDIO_PIN_HIGH: GPIOA_BSRR = (1<<Copy_enumPinNo) ;break;
 					default: /* Error Invalid Pin Value */;break;
 				}
 			}
 			else{/* Error Invalid Pin No*/}
 		break;
-		case DIO_PORTB:
-			if(Copy_u8PinNo<=DIO_PIN15){
+		case PORTB:
+			if(Copy_enumPinNo<=PIN15){
 				switch(Copy_u8PinVal){
-					case DIO_PIN_LOW : GPIOB_BRR  = (1<<Copy_u8PinNo) ;break;
-					case DIO_PIN_HIGH: GPIOB_BSRR = (1<<Copy_u8PinNo) ;break;
+					case MDIO_PIN_LOW : GPIOB_BRR  = (1<<Copy_enumPinNo) ;break;
+					case MDIO_PIN_HIGH: GPIOB_BSRR = (1<<Copy_enumPinNo) ;break;
 					default: /* Error Invalid Pin Value */;break;
 				}
 			}
 			else{/* Error Invalid Pin No*/}
 		break;
-		case DIO_PORTC:
-			if(Copy_u8PinNo>=DIO_PIN13 && Copy_u8PinNo<=DIO_PIN15){
+		case PORTC:
+			if(Copy_enumPinNo>=PIN13 && Copy_enumPinNo<=PIN15){
 				switch(Copy_u8PinVal){
-					case DIO_PIN_LOW : GPIOC_BRR  = (1<<Copy_u8PinNo) ;break;
-					case DIO_PIN_HIGH: GPIOC_BSRR = (1<<Copy_u8PinNo) ;break;
+					case MDIO_PIN_LOW : GPIOC_BRR  = (1<<Copy_enumPinNo) ;break;
+					case MDIO_PIN_HIGH: GPIOC_BSRR = (1<<Copy_enumPinNo) ;break;
 					default: /* Error Invalid Pin Value */;break;
 				}
 			}
@@ -157,11 +160,11 @@ void DIO_voidSetPinValue(u8 Copy_u8PortId ,u8 Copy_u8PinNo , u8 Copy_u8PinVal){
 		break;
 	}
 }
-void DIO_voidSet8BitsValue(u8 Copy_u8PortId ,u8 Copy_u8Start, u8 Copy_u8Val){
+void MDIO_voidSet8BitsValue(MDIO_enumPorts Copy_enumPortId ,MDIO_enumPins Copy_u8Start, u8 Copy_u8Val){
 
-	switch(Copy_u8PortId){
-		case DIO_PORTA:
-			if(Copy_u8Start<=DIO_PIN15){
+	switch(Copy_enumPortId){
+		case PORTA:
+			if(Copy_u8Start<=PIN15){
 				if(Copy_u8Start<=8){ /* Make sure that the 8 bits don't exceed the port */
 					GPIOA_ODR &= ~(0xFF<<Copy_u8Start); /* Reset the required 8 bits */
 					GPIOA_ODR |= (Copy_u8Val<<Copy_u8Start);
@@ -169,8 +172,8 @@ void DIO_voidSet8BitsValue(u8 Copy_u8PortId ,u8 Copy_u8Start, u8 Copy_u8Val){
 			}
 			else{/* Error Invalid Pin No*/}
 		break;
-		case DIO_PORTB:
-			if(Copy_u8Start<=DIO_PIN15){
+		case PORTB:
+			if(Copy_u8Start<=PIN15){
 				if(Copy_u8Start<=8){ /* Make sure that the 8 bits don't exceed the port */
 					GPIOB_ODR &= ~(0xFF<<Copy_u8Start); /* Reset the required 8 bits */
 					GPIOB_ODR |= (Copy_u8Val<<Copy_u8Start);
@@ -182,103 +185,103 @@ void DIO_voidSet8BitsValue(u8 Copy_u8PortId ,u8 Copy_u8Start, u8 Copy_u8Val){
 	}
 }
 
-u8 DIO_u8GetPinValue(u8 Copy_u8PortId ,u8 Copy_u8PinNo){
-	switch(Copy_u8PortId){
+u8 MDIO_u8GetPinValue(MDIO_enumPorts Copy_enumPortId ,MDIO_enumPins Copy_enumPinNo){
+	switch(Copy_enumPortId){
 
-		case DIO_PORTA:
+		case PORTA:
 
-			if(Copy_u8PinNo<=DIO_PIN15)
-				return GET_BIT(GPIOA_IDR,Copy_u8PinNo);
+			if(Copy_enumPinNo<=PIN15)
+				return GET_BIT(GPIOA_IDR,Copy_enumPinNo);
 			else{/* Error Invalid Pin No*/}
 
 		break;
 
-		case DIO_PORTB:
+		case PORTB:
 
-			if(Copy_u8PinNo<=DIO_PIN15)
-				return GET_BIT(GPIOB_IDR,Copy_u8PinNo);
+			if(Copy_enumPinNo<=PIN15)
+				return GET_BIT(GPIOB_IDR,Copy_enumPinNo);
 			else{/* Error Invalid Pin No*/}
 
 		break;
 
-		case DIO_PORTC:
-			if(Copy_u8PinNo>=DIO_PIN13 && Copy_u8PinNo<=DIO_PIN15)
-				return GET_BIT(GPIOC_IDR,Copy_u8PinNo);
+		case PORTC:
+			if(Copy_enumPinNo>=PIN13 && Copy_enumPinNo<=PIN15)
+				return GET_BIT(GPIOC_IDR,Copy_enumPinNo);
 			else{/* Error Invalid Pin No*/}
 		break;
 		}
 	return 0;
 }
 
-void DIO_voidLockPin(u8 Copy_u8PortId ,u8 Copy_u8PinNo){
-	switch(Copy_u8PortId){
+void MDIO_voidLockPin(u8 Copy_enumPortId ,u8 Copy_enumPinNo){
+	switch(Copy_enumPortId){
 
-			case DIO_PORTA:
+			case PORTA:
 
-				if(Copy_u8PinNo<=DIO_PIN15)
-					SET_BIT(GPIOA_LCKR,Copy_u8PinNo);
+				if(Copy_enumPinNo<=PIN15)
+					SET_BIT(GPIOA_LCKR,Copy_enumPinNo);
 				else{/* Error Invalid Pin No*/}
 
 			break;
 
-			case DIO_PORTB:
+			case PORTB:
 
-				if(Copy_u8PinNo<=DIO_PIN15)
-					SET_BIT(GPIOB_LCKR,Copy_u8PinNo);
+				if(Copy_enumPinNo<=PIN15)
+					SET_BIT(GPIOB_LCKR,Copy_enumPinNo);
 				else{/* Error Invalid Pin No*/}
 
 			break;
 
-			case DIO_PORTC:
-				if(Copy_u8PinNo>=DIO_PIN13 && Copy_u8PinNo<=DIO_PIN15)
-					SET_BIT(GPIOC_LCKR,Copy_u8PinNo);
-				else{/* Error Invalid Pin No*/}
-			break;
-
-			}
-	}
-
-void DIO_voidUnlockPin(u8 Copy_u8PortId ,u8 Copy_u8PinNo){
-
-	switch(Copy_u8PortId){
-
-			case DIO_PORTA:
-				if(Copy_u8PinNo<=DIO_PIN15)
-					CLR_BIT(GPIOA_LCKR,Copy_u8PinNo);
-				else{/* Error Invalid Pin No*/}
-			break;
-
-			case DIO_PORTB:
-				if(Copy_u8PinNo<=DIO_PIN15)
-					CLR_BIT(GPIOB_LCKR,Copy_u8PinNo);
-				else{/* Error Invalid Pin No*/}
-			break;
-
-			case DIO_PORTC:
-				if(Copy_u8PinNo>=DIO_PIN13 && Copy_u8PinNo<=DIO_PIN15)
-					CLR_BIT(GPIOC_LCKR,Copy_u8PinNo);
+			case PORTC:
+				if(Copy_enumPinNo>=PIN13 && Copy_enumPinNo<=PIN15)
+					SET_BIT(GPIOC_LCKR,Copy_enumPinNo);
 				else{/* Error Invalid Pin No*/}
 			break;
 
 			}
 	}
 
-void DIO_voidLockLckReg(u8 Copy_u8PortId){
-	switch(Copy_u8PortId){
+void MDIO_voidUnlockPin(u8 Copy_enumPortId ,u8 Copy_enumPinNo){
 
-			case DIO_PORTA:
+	switch(Copy_enumPortId){
+
+			case PORTA:
+				if(Copy_enumPinNo<=PIN15)
+					CLR_BIT(GPIOA_LCKR,Copy_enumPinNo);
+				else{/* Error Invalid Pin No*/}
+			break;
+
+			case PORTB:
+				if(Copy_enumPinNo<=PIN15)
+					CLR_BIT(GPIOB_LCKR,Copy_enumPinNo);
+				else{/* Error Invalid Pin No*/}
+			break;
+
+			case PORTC:
+				if(Copy_enumPinNo>=PIN13 && Copy_enumPinNo<=PIN15)
+					CLR_BIT(GPIOC_LCKR,Copy_enumPinNo);
+				else{/* Error Invalid Pin No*/}
+			break;
+
+			}
+	}
+
+void MDIO_voidLockLckReg(u8 Copy_enumPortId){
+	switch(Copy_enumPortId){
+
+			case PORTA:
 					SET_BIT(GPIOA_LCKR,16);
 					CLR_BIT(GPIOA_LCKR,16);
 					SET_BIT(GPIOA_LCKR,16);
 			break;
 
-			case DIO_PORTB:
+			case PORTB:
 					SET_BIT(GPIOB_LCKR,16);
 					CLR_BIT(GPIOB_LCKR,16);
 					SET_BIT(GPIOB_LCKR,16);
 			break;
 
-			case DIO_PORTC:
+			case PORTC:
 					SET_BIT(GPIOC_LCKR,16);
 					CLR_BIT(GPIOC_LCKR,16);
 					SET_BIT(GPIOC_LCKR,16);

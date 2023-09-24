@@ -22,10 +22,10 @@ typedef struct{
 
 /* Prototypes */
 void MEXTI_voidInitEXTI   		 	(EXTI_tCfg * Add_EXTICfg);
-void MEXTI_voidEnableEXTI  	 	    (EXTI_tCfg * Add_EXTICfg);
+void MEXTI_voidEnableEXTI  	 	    (EXTI_tCfg * Add_EXTICfg , void(*Func)(void));
 void MEXTI_voidDisableEXTI  	 	(EXTI_tCfg * Add_EXTICfg);
-void MEXTI_voidSetPendingFlagEXTI  	(EXTI_tCfg * Add_EXTICfg);
-void MEXTI_voidDoSwInterrupt  	 	(EXTI_tCfg * Add_EXTICfg);
+void MEXTI_voidSetPendingFlagEXTI  	(EXTI_tCfg * Add_EXTICfg , void(*Func)(void));
+void MEXTI_voidDoSwInterrupt  	 	(EXTI_tCfg * Add_EXTICfg , void(*Func)(void));
 void MEXTI_voidResetInterruptFlag  	(u8 Copy_u8Pin);
 
 
